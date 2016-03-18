@@ -45,6 +45,7 @@ Enjoy!
 
 ### Credits
 Massive thanks to Benjamin Vedder for creating the VESC and open sourcing all his hard work: http://www.vedder.se
+<br>
 Also thanks to RollingGecko who provided a lot of code that I based this all on: https://github.com/RollingGecko/VescUartControl
 
 
