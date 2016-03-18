@@ -1,5 +1,7 @@
 # VESC_Logger
-iOS Code to enable VESC communication via Adafruit UART Friend
+iOS Code to enable VESC communication via Adafruit UART Friend.
+<br><br>
+This project can log real time data from the VESC into a mobile app.  It does not control the VESC, it only reports back on VESC data such as Amps, Battery Voltage, RPM, etc.
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=AAa55i9OPH8
 " target="_blank"><img src="http://gourmetpixel.com/tests/bens/VESC/VESC_Logger.png" 
@@ -26,6 +28,11 @@ Wire these two together:
 Check http://vedder.se/2015/01/vesc-open-source-esc/ for the VESC UART port info
 
 It's important to make sure you wire your Adafruit CTS to GND otherwise your comms won't work.
+
+### VESC Configuration
+Your VESC needs a couple of bits setup in BLDC Tool.  In _App Configuration_ tab choose the _UART_ side tab and set the _Baud Rate_ to _9600_.
+<br>
+In the _General_ side tab, I have chosen _PPM an UART_ but I don't think you need UART chosen here (to be confirmed)
 
 ### Wired up?
 
