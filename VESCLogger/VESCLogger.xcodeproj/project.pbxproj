@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26BE67AB1C9AFA0500AD5E40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67AA1C9AFA0500AD5E40 /* main.m */; };
+		26BE67AE1C9AFA0500AD5E40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67AD1C9AFA0500AD5E40 /* AppDelegate.m */; };
+		26BE67B11C9AFA0500AD5E40 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67B01C9AFA0500AD5E40 /* ViewController.m */; };
+		26BE67B41C9AFA0500AD5E40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26BE67B21C9AFA0500AD5E40 /* Main.storyboard */; };
+		26BE67B61C9AFA0500AD5E40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26BE67B51C9AFA0500AD5E40 /* Assets.xcassets */; };
+		26BE67B91C9AFA0500AD5E40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26BE67B71C9AFA0500AD5E40 /* LaunchScreen.storyboard */; };
+		26BE67C41C9AFA0500AD5E40 /* VESCLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67C31C9AFA0500AD5E40 /* VESCLoggerTests.m */; };
+		26BE67CF1C9AFA0500AD5E40 /* VESCLoggerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67CE1C9AFA0500AD5E40 /* VESCLoggerUITests.m */; };
+		26BE67EA1C9AFA3900AD5E40 /* bldc_interface_uart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67DD1C9AFA3900AD5E40 /* bldc_interface_uart.cpp */; };
+		26BE67EB1C9AFA3900AD5E40 /* bldc_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67DF1C9AFA3900AD5E40 /* bldc_interface.cpp */; };
+		26BE67EC1C9AFA3900AD5E40 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67E11C9AFA3900AD5E40 /* buffer.cpp */; };
+		26BE67ED1C9AFA3900AD5E40 /* crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67E31C9AFA3900AD5E40 /* crc.cpp */; };
+		26BE67EE1C9AFA3900AD5E40 /* packet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67E61C9AFA3900AD5E40 /* packet.cpp */; };
+		26BE67EF1C9AFA3900AD5E40 /* VescController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67E91C9AFA3900AD5E40 /* VescController.m */; };
+		26BE67F21C9B08D600AD5E40 /* DataGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE67F11C9B08D600AD5E40 /* DataGraphView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		26BE67C01C9AFA0500AD5E40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26BE679E1C9AFA0500AD5E40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26BE67A51C9AFA0500AD5E40;
+			remoteInfo = VESCLogger;
+		};
+		26BE67CB1C9AFA0500AD5E40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26BE679E1C9AFA0500AD5E40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26BE67A51C9AFA0500AD5E40;
+			remoteInfo = VESCLogger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		26BE67A61C9AFA0500AD5E40 /* VESCLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VESCLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26BE67AA1C9AFA0500AD5E40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		26BE67AC1C9AFA0500AD5E40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		26BE67AD1C9AFA0500AD5E40 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		26BE67AF1C9AFA0500AD5E40 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		26BE67B01C9AFA0500AD5E40 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		26BE67B31C9AFA0500AD5E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		26BE67B51C9AFA0500AD5E40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		26BE67B81C9AFA0500AD5E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		26BE67BA1C9AFA0500AD5E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26BE67BF1C9AFA0500AD5E40 /* VESCLoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VESCLoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26BE67C31C9AFA0500AD5E40 /* VESCLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VESCLoggerTests.m; sourceTree = "<group>"; };
+		26BE67C51C9AFA0500AD5E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26BE67CA1C9AFA0500AD5E40 /* VESCLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VESCLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26BE67CE1C9AFA0500AD5E40 /* VESCLoggerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VESCLoggerUITests.m; sourceTree = "<group>"; };
+		26BE67D01C9AFA0500AD5E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26BE67DD1C9AFA3900AD5E40 /* bldc_interface_uart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bldc_interface_uart.cpp; sourceTree = "<group>"; };
+		26BE67DE1C9AFA3900AD5E40 /* bldc_interface_uart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bldc_interface_uart.h; sourceTree = "<group>"; };
+		26BE67DF1C9AFA3900AD5E40 /* bldc_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bldc_interface.cpp; sourceTree = "<group>"; };
+		26BE67E01C9AFA3900AD5E40 /* bldc_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bldc_interface.h; sourceTree = "<group>"; };
+		26BE67E11C9AFA3900AD5E40 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
+		26BE67E21C9AFA3900AD5E40 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		26BE67E31C9AFA3900AD5E40 /* crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc.cpp; sourceTree = "<group>"; };
+		26BE67E41C9AFA3900AD5E40 /* crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc.h; sourceTree = "<group>"; };
+		26BE67E51C9AFA3900AD5E40 /* datatypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datatypes.h; sourceTree = "<group>"; };
+		26BE67E61C9AFA3900AD5E40 /* packet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = packet.cpp; sourceTree = "<group>"; };
+		26BE67E71C9AFA3900AD5E40 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packet.h; sourceTree = "<group>"; };
+		26BE67E81C9AFA3900AD5E40 /* VescController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VescController.h; sourceTree = "<group>"; };
+		26BE67E91C9AFA3900AD5E40 /* VescController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VescController.m; sourceTree = "<group>"; };
+		26BE67F01C9B08D600AD5E40 /* DataGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGraphView.h; sourceTree = "<group>"; };
+		26BE67F11C9B08D600AD5E40 /* DataGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGraphView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26BE67A31C9AFA0500AD5E40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26BE67BC1C9AFA0500AD5E40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26BE67C71C9AFA0500AD5E40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26BE679D1C9AFA0500AD5E40 = {
+			isa = PBXGroup;
+			children = (
+				26BE67A81C9AFA0500AD5E40 /* VESCLogger */,
+				26BE67C21C9AFA0500AD5E40 /* VESCLoggerTests */,
+				26BE67CD1C9AFA0500AD5E40 /* VESCLoggerUITests */,
+				26BE67A71C9AFA0500AD5E40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26BE67A71C9AFA0500AD5E40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26BE67A61C9AFA0500AD5E40 /* VESCLogger.app */,
+				26BE67BF1C9AFA0500AD5E40 /* VESCLoggerTests.xctest */,
+				26BE67CA1C9AFA0500AD5E40 /* VESCLoggerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26BE67A81C9AFA0500AD5E40 /* VESCLogger */ = {
+			isa = PBXGroup;
+			children = (
+				26BE67DC1C9AFA2E00AD5E40 /* VESC Bits */,
+				26BE67AC1C9AFA0500AD5E40 /* AppDelegate.h */,
+				26BE67AD1C9AFA0500AD5E40 /* AppDelegate.m */,
+				26BE67AF1C9AFA0500AD5E40 /* ViewController.h */,
+				26BE67B01C9AFA0500AD5E40 /* ViewController.m */,
+				26BE67F01C9B08D600AD5E40 /* DataGraphView.h */,
+				26BE67F11C9B08D600AD5E40 /* DataGraphView.m */,
+				26BE67B21C9AFA0500AD5E40 /* Main.storyboard */,
+				26BE67B51C9AFA0500AD5E40 /* Assets.xcassets */,
+				26BE67B71C9AFA0500AD5E40 /* LaunchScreen.storyboard */,
+				26BE67BA1C9AFA0500AD5E40 /* Info.plist */,
+				26BE67A91C9AFA0500AD5E40 /* Supporting Files */,
+			);
+			path = VESCLogger;
+			sourceTree = "<group>";
+		};
+		26BE67A91C9AFA0500AD5E40 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				26BE67AA1C9AFA0500AD5E40 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26BE67C21C9AFA0500AD5E40 /* VESCLoggerTests */ = {
+			isa = PBXGroup;
+			children = (
+				26BE67C31C9AFA0500AD5E40 /* VESCLoggerTests.m */,
+				26BE67C51C9AFA0500AD5E40 /* Info.plist */,
+			);
+			path = VESCLoggerTests;
+			sourceTree = "<group>";
+		};
+		26BE67CD1C9AFA0500AD5E40 /* VESCLoggerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				26BE67CE1C9AFA0500AD5E40 /* VESCLoggerUITests.m */,
+				26BE67D01C9AFA0500AD5E40 /* Info.plist */,
+			);
+			path = VESCLoggerUITests;
+			sourceTree = "<group>";
+		};
+		26BE67DC1C9AFA2E00AD5E40 /* VESC Bits */ = {
+			isa = PBXGroup;
+			children = (
+				26BE67DD1C9AFA3900AD5E40 /* bldc_interface_uart.cpp */,
+				26BE67DE1C9AFA3900AD5E40 /* bldc_interface_uart.h */,
+				26BE67DF1C9AFA3900AD5E40 /* bldc_interface.cpp */,
+				26BE67E01C9AFA3900AD5E40 /* bldc_interface.h */,
+				26BE67E11C9AFA3900AD5E40 /* buffer.cpp */,
+				26BE67E21C9AFA3900AD5E40 /* buffer.h */,
+				26BE67E31C9AFA3900AD5E40 /* crc.cpp */,
+				26BE67E41C9AFA3900AD5E40 /* crc.h */,
+				26BE67E51C9AFA3900AD5E40 /* datatypes.h */,
+				26BE67E61C9AFA3900AD5E40 /* packet.cpp */,
+				26BE67E71C9AFA3900AD5E40 /* packet.h */,
+				26BE67E81C9AFA3900AD5E40 /* VescController.h */,
+				26BE67E91C9AFA3900AD5E40 /* VescController.m */,
+			);
+			name = "VESC Bits";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26BE67A51C9AFA0500AD5E40 /* VESCLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26BE67D31C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLogger" */;
+			buildPhases = (
+				26BE67A21C9AFA0500AD5E40 /* Sources */,
+				26BE67A31C9AFA0500AD5E40 /* Frameworks */,
+				26BE67A41C9AFA0500AD5E40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VESCLogger;
+			productName = VESCLogger;
+			productReference = 26BE67A61C9AFA0500AD5E40 /* VESCLogger.app */;
+			productType = "com.apple.product-type.application";
+		};
+		26BE67BE1C9AFA0500AD5E40 /* VESCLoggerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26BE67D61C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLoggerTests" */;
+			buildPhases = (
+				26BE67BB1C9AFA0500AD5E40 /* Sources */,
+				26BE67BC1C9AFA0500AD5E40 /* Frameworks */,
+				26BE67BD1C9AFA0500AD5E40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26BE67C11C9AFA0500AD5E40 /* PBXTargetDependency */,
+			);
+			name = VESCLoggerTests;
+			productName = VESCLoggerTests;
+			productReference = 26BE67BF1C9AFA0500AD5E40 /* VESCLoggerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		26BE67C91C9AFA0500AD5E40 /* VESCLoggerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26BE67D91C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLoggerUITests" */;
+			buildPhases = (
+				26BE67C61C9AFA0500AD5E40 /* Sources */,
+				26BE67C71C9AFA0500AD5E40 /* Frameworks */,
+				26BE67C81C9AFA0500AD5E40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26BE67CC1C9AFA0500AD5E40 /* PBXTargetDependency */,
+			);
+			name = VESCLoggerUITests;
+			productName = VESCLoggerUITests;
+			productReference = 26BE67CA1C9AFA0500AD5E40 /* VESCLoggerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26BE679E1C9AFA0500AD5E40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Gourmet Pixel";
+				TargetAttributes = {
+					26BE67A51C9AFA0500AD5E40 = {
+						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					26BE67BE1C9AFA0500AD5E40 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 26BE67A51C9AFA0500AD5E40;
+					};
+					26BE67C91C9AFA0500AD5E40 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 26BE67A51C9AFA0500AD5E40;
+					};
+				};
+			};
+			buildConfigurationList = 26BE67A11C9AFA0500AD5E40 /* Build configuration list for PBXProject "VESCLogger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 26BE679D1C9AFA0500AD5E40;
+			productRefGroup = 26BE67A71C9AFA0500AD5E40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26BE67A51C9AFA0500AD5E40 /* VESCLogger */,
+				26BE67BE1C9AFA0500AD5E40 /* VESCLoggerTests */,
+				26BE67C91C9AFA0500AD5E40 /* VESCLoggerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26BE67A41C9AFA0500AD5E40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26BE67B91C9AFA0500AD5E40 /* LaunchScreen.storyboard in Resources */,
+				26BE67B61C9AFA0500AD5E40 /* Assets.xcassets in Resources */,
+				26BE67B41C9AFA0500AD5E40 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26BE67BD1C9AFA0500AD5E40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26BE67C81C9AFA0500AD5E40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26BE67A21C9AFA0500AD5E40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26BE67EF1C9AFA3900AD5E40 /* VescController.m in Sources */,
+				26BE67EA1C9AFA3900AD5E40 /* bldc_interface_uart.cpp in Sources */,
+				26BE67B11C9AFA0500AD5E40 /* ViewController.m in Sources */,
+				26BE67AE1C9AFA0500AD5E40 /* AppDelegate.m in Sources */,
+				26BE67EE1C9AFA3900AD5E40 /* packet.cpp in Sources */,
+				26BE67EC1C9AFA3900AD5E40 /* buffer.cpp in Sources */,
+				26BE67AB1C9AFA0500AD5E40 /* main.m in Sources */,
+				26BE67EB1C9AFA3900AD5E40 /* bldc_interface.cpp in Sources */,
+				26BE67ED1C9AFA3900AD5E40 /* crc.cpp in Sources */,
+				26BE67F21C9B08D600AD5E40 /* DataGraphView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26BE67BB1C9AFA0500AD5E40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26BE67C41C9AFA0500AD5E40 /* VESCLoggerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26BE67C61C9AFA0500AD5E40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26BE67CF1C9AFA0500AD5E40 /* VESCLoggerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		26BE67C11C9AFA0500AD5E40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26BE67A51C9AFA0500AD5E40 /* VESCLogger */;
+			targetProxy = 26BE67C01C9AFA0500AD5E40 /* PBXContainerItemProxy */;
+		};
+		26BE67CC1C9AFA0500AD5E40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26BE67A51C9AFA0500AD5E40 /* VESCLogger */;
+			targetProxy = 26BE67CB1C9AFA0500AD5E40 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		26BE67B21C9AFA0500AD5E40 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26BE67B31C9AFA0500AD5E40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		26BE67B71C9AFA0500AD5E40 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26BE67B81C9AFA0500AD5E40 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26BE67D11C9AFA0500AD5E40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		26BE67D21C9AFA0500AD5E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26BE67D41C9AFA0500AD5E40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = VESCLogger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gourmetpixel.VESCLogger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		26BE67D51C9AFA0500AD5E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = VESCLogger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gourmetpixel.VESCLogger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		26BE67D71C9AFA0500AD5E40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = VESCLoggerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gourmetpixel.VESCLoggerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VESCLogger.app/VESCLogger";
+			};
+			name = Debug;
+		};
+		26BE67D81C9AFA0500AD5E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = VESCLoggerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gourmetpixel.VESCLoggerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VESCLogger.app/VESCLogger";
+			};
+			name = Release;
+		};
+		26BE67DA1C9AFA0500AD5E40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = VESCLoggerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gourmetpixel.VESCLoggerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = VESCLogger;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		26BE67DB1C9AFA0500AD5E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = VESCLoggerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gourmetpixel.VESCLoggerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = VESCLogger;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26BE67A11C9AFA0500AD5E40 /* Build configuration list for PBXProject "VESCLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26BE67D11C9AFA0500AD5E40 /* Debug */,
+				26BE67D21C9AFA0500AD5E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26BE67D31C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26BE67D41C9AFA0500AD5E40 /* Debug */,
+				26BE67D51C9AFA0500AD5E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		26BE67D61C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLoggerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26BE67D71C9AFA0500AD5E40 /* Debug */,
+				26BE67D81C9AFA0500AD5E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		26BE67D91C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLoggerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26BE67DA1C9AFA0500AD5E40 /* Debug */,
+				26BE67DB1C9AFA0500AD5E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26BE679E1C9AFA0500AD5E40 /* Project object */;
+}
