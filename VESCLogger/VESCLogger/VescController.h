@@ -114,9 +114,9 @@ struct bldcMeasure {
 
 - (NSData *)dataForGetValues:(int)command val:(double)val;
 
-
 - (int) process_incoming_bytes:(NSData *)incomingData;
 - (struct bldcMeasure) ProcessReadPacket;
+- (void) resetPacket;
 
 - (void) test;
 

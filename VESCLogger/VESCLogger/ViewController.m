@@ -61,14 +61,14 @@
     // Init a VESC Controller
     _aVescController = [[VescController alloc] init];
     
+    [_aVescController dataForGetValues:0 val:0];
+    
     // Init Bluetooth
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 
     // Test Stuff
     currentGraphVariable = 4; // 4 = RPM
     aDataGraphView.dataPointsName = [measureNames objectAtIndex:currentGraphVariable];
-    
-    aDataGraphView.dataPointsArray = @[@0,@10,@0,@20,@30,@60,@100,@200,@10,@10,@10,@5,@0,@10,@0,@20,@30,@60,@100,@200,@10,@10,@10,@5,@0,@10,@0,@20,@30,@60,@100,@200,@10,@10,@10,@5,@0,@10,@0,@20,@30,@60,@100,@200,@10,@10,@10,@5];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +82,7 @@
         btnStartStopRecording.alpha=1;
     }];
     
-    [self performSelector:@selector(doGetValues) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(doGetValues) withObject:nil afterDelay:0.3];
 }
 
 - (void) startStopRecording {
@@ -110,7 +110,7 @@
 - (void) doGetValues {
     NSLog(@"Get Values");
     NSData *dataToSend = [_aVescController dataForGetValues:COMM_GET_VALUES val:0];
-    [_UARTPeripheral writeValue:dataToSend forCharacteristic:_txCharacteristic type:CBCharacteristicWriteWithResponse];
+    if (dataToSend && _txCharacteristic) [_UARTPeripheral writeValue:dataToSend forCharacteristic:_txCharacteristic type:CBCharacteristicWriteWithResponse];
     
     if (isRecording) [self performSelector:@selector(getValuesTimeOut) withObject:nil afterDelay:3.0];
 }
@@ -244,12 +244,15 @@
 
 - (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     [lblAppStatus setText:@"Bluetooth: Peripheral disconnected"];
+    
     NSLog(@"Did disconnect peripheral %@", peripheral.name);
     _txCharacteristic = nil;
     _rxCharacteristic = nil;
     _UARTPeripheral = nil;
+    [_aVescController resetPacket];
     
-    [_aVescController reset];
+    // Start scanning for it again
+    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 }
 
 // CBCentralManagerDelegate - This is called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
@@ -258,11 +261,12 @@
     if ([localName length] > 0) {
         [lblAppStatus setText:@"Bluetooth: Peripheral discovered"];
         NSLog(@"Found the UART preipheral: %@", localName);
-        //        [_centralManager stopScan];
         _UARTPeripheral = peripheral;
         
         peripheral.delegate = self;
         [_centralManager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey: [NSNumber numberWithBool:YES]}];
+
+        [_centralManager stopScan];
     }
 }
 
@@ -324,6 +328,11 @@
                 
                 if (_txCharacteristic != nil) [self UART_Ready];
             }
+        }
+        
+        if (_txCharacteristic == nil && _rxCharacteristic == nil) {
+            [lblAppStatus setText:@"RX and TX not discovered. Closing connection."];
+            [_centralManager cancelPeripheralConnection:_UARTPeripheral];
         }
         
     } else if ([service.UUID isEqual:[CBUUID UUIDWithString:DEVICE_INFO_UUID]]) {

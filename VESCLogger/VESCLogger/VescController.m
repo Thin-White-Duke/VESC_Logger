@@ -41,13 +41,13 @@ const uint16_t crc16_tab[] = { 0x0000, 0x1021, 0x2042, 0x3063, 0x4084,
     0x0cc1, 0xef1f, 0xff3e, 0xcf5d, 0xdf7c, 0xaf9b, 0xbfba, 0x8fd9, 0x9ff8,
     0x6e17, 0x7e36, 0x4e55, 0x5e74, 0x2e93, 0x3eb2, 0x0ed1, 0x1ef0 };
 
-- (void) SetCurrent:(double)val  {SendCommand(COMM_SET_CURRENT, val);}
-- (void) SetRpm:(double)val	   {SendCommand(COMM_SET_RPM, val);}
-- (void) SetDuty:(double)val     {SendCommand(COMM_SET_DUTY, val);}
-- (void) SetBrake:(double)val    {SendCommand(COMM_SET_CURRENT_BRAKE, val);}
-- (void) Release               {[self SetCurrent:0];}
-- (void) FullBrake             {[self SetDuty:0];}
-- (void) GetValues             {SendCommand(COMM_GET_VALUES, -1);}
+//- (void) SetCurrent:(double)val  {SendCommand(COMM_SET_CURRENT, val);}
+//- (void) SetRpm:(double)val	   {SendCommand(COMM_SET_RPM, val);}
+//- (void) SetDuty:(double)val     {SendCommand(COMM_SET_DUTY, val);}
+//- (void) SetBrake:(double)val    {SendCommand(COMM_SET_CURRENT_BRAKE, val);}
+//- (void) Release               {[self SetCurrent:0];}
+//- (void) FullBrake             {[self SetDuty:0];}
+//- (void) GetValues             {SendCommand(COMM_GET_VALUES, -1);}
 
 
 int16_t buffer_get_int16(const uint8_t *buffer, int32_t *index) {
@@ -114,76 +114,6 @@ void WriteArray(uint8_t* arr, int32_t num)
 //    for(int32_t i=0;i<num;i++) outputSerial.write(arr[i]);
 }
 
-void SendCommand(uint8_t command, double val)
-{
-    unsigned char buff[10];
-    int32_t ind = 0;
-    
-    buff[ind++] = 2;
-    if (command == COMM_GET_VALUES) {
-        buff[ind++] = 4;
-    } else {
-        buff[ind++] = 5;
-    }
-    buff[ind++] = command;
-    
-    if (command == COMM_GET_VALUES) {
-        // Don't send a value, just the command is enough
-//        buffer_append_int32(buff, (int32_t)val, &ind);
-        
-    } else if(command == COMM_SET_RPM) {
-        buffer_append_int32(buff, (int32_t)val, &ind);
-    }
-    else
-    {
-        double scale;
-        if(command == COMM_SET_DUTY) scale = 100000.0;
-        else scale = 1000;
-        
-        buffer_append_double32(buff, val, scale, &ind);
-    }
-    
-    uint16_t crc = crc16(buff + 2, 5);
-    buff[ind++] = crc >> 8;
-    buff[ind++] = crc;
-    
-    buff[ind++] = 3;
-    
-    WriteArray(buff,10);
-}
-
-- (NSString *) stringForCommand:(int)command val:(double)val {
-    unsigned char buff[10];
-    int32_t ind = 0;
-    
-    buff[ind++] = 2;
-    if (command == COMM_GET_VALUES) {
-        buff[ind++] = 4;
-    } else {
-        buff[ind++] = 5;
-    }
-    buff[ind++] = command;
-    
-    if(command == COMM_SET_RPM) {
-        buffer_append_int32(buff, (int32_t)val, &ind);
-        
-    } else {
-        double scale;
-        if(command == COMM_SET_DUTY) scale = 100000.0;
-        else scale = 1000;
-        
-        buffer_append_double32(buff, val, scale, &ind);
-    }
-    
-    uint16_t crc = crc16(buff + 2, 5);
-    buff[ind++] = crc >> 8;
-    buff[ind++] = crc;
-    
-    buff[ind++] = 3;
-    
-    NSString *string = [[NSString alloc] initWithBytes:buff length:sizeof(buff) encoding:NSASCIIStringEncoding];
-    return string;
-}
 
 - (NSData *) dataForCommand:(int)command val:(double)val {
     unsigned char buff[10];
@@ -230,7 +160,6 @@ void SendCommand(uint8_t command, double val)
     buff[ind++] = 3;
     
     // 214 @84 3
-    
     NSData* data = [NSData dataWithBytes:(const void *)buff length:sizeof(buff)];
     return data;    
 }
@@ -332,13 +261,13 @@ bool UnpackPayload(uint8_t* message, int lenMes, int lenPay) {
         case COMM_GET_VALUES:
             ind = 0;
             
-            values.temp_mos1 = buffer_get_float16(payload, 10.0, &ind);
-            values.temp_mos2 = buffer_get_float16(payload, 10.0, &ind);
-            values.temp_mos3 = buffer_get_float16(payload, 10.0, &ind);
-            values.temp_mos4 = buffer_get_float16(payload, 10.0, &ind);
-            values.temp_mos5 = buffer_get_float16(payload, 10.0, &ind);
-            values.temp_mos6 = buffer_get_float16(payload, 10.0, &ind);
-            values.temp_pcb = buffer_get_float16(payload, 10.0, &ind);
+            values.temp_mos1 = buffer_get_float16(payload2, 10.0, &ind);
+            values.temp_mos2 = buffer_get_float16(payload2, 10.0, &ind);
+            values.temp_mos3 = buffer_get_float16(payload2, 10.0, &ind);
+            values.temp_mos4 = buffer_get_float16(payload2, 10.0, &ind);
+            values.temp_mos5 = buffer_get_float16(payload2, 10.0, &ind);
+            values.temp_mos6 = buffer_get_float16(payload2, 10.0, &ind);
+            values.temp_pcb = buffer_get_float16(payload2, 10.0, &ind);
 
             values.avgMotorCurrent = buffer_get_float32(payload2, 100.0, &ind);
             values.avgInputCurrent = buffer_get_float32(payload2, 100.0, &ind);
