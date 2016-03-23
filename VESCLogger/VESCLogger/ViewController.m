@@ -173,7 +173,7 @@
     struct bldcMeasure thisData;
     
     for (NSArray *data in _dataArray) {
-        NSDate *dateOfData = [data objectAtIndex:0];
+//        NSDate *dateOfData = [data objectAtIndex:0];
         NSData *dataInData = [data objectAtIndex:1];
         
         [dataInData getBytes:&thisData length:sizeof(thisData)];

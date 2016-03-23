@@ -101,15 +101,14 @@ struct bldcMeasure {
     
 }
 
-- (void) SetCurrent:(double)val;
-- (void) SetRpm:(double)val;
-- (void) SetDuty:(double)val;
-- (void) SetBrake:(double)val;
-- (void) Release;
-- (void) FullBrake;
-- (void) GetValues;
+//- (void) SetCurrent:(double)val;
+//- (void) SetRpm:(double)val;
+//- (void) SetDuty:(double)val;
+//- (void) SetBrake:(double)val;
+//- (void) Release;
+//- (void) FullBrake;
+//- (void) GetValues;
 
-- (NSString *) stringForCommand:(int)command val:(double)val;
 - (NSData *) dataForCommand:(int)command val:(double)val;
 
 - (NSData *)dataForGetValues:(int)command val:(double)val;
@@ -117,7 +116,5 @@ struct bldcMeasure {
 - (int) process_incoming_bytes:(NSData *)incomingData;
 - (struct bldcMeasure) ProcessReadPacket;
 - (void) resetPacket;
-
-- (void) test;
 
 @end
