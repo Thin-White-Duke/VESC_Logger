@@ -50,6 +50,10 @@ Drag you finger along the graph to pinpoint values.
 
 Enjoy!
 
+### Control Mode
+
+I have added a basic control mode to the app.  It lets you send COMM_SET_CURRENT commands to the VESC using a simple slider.  When the VESC is detected a button will appear in the top left to access Control Mode. *DO NOT RIDE WITH THIS!!!* Seriously!!  Control Mode is currently just for testing your VESC and the app, it's not designed to ride your VESC powered vehicle with.
+
 ### Credits
 Massive thanks to Benjamin Vedder for creating the VESC and open sourcing all his hard work: http://www.vedder.se
 <br>
