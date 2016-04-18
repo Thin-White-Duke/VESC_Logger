@@ -14,8 +14,12 @@
 
 @implementation ViewController
 
+#define SEND_SERIAL_DATA_INTERVAL 0.25 // Seconds between sending commands
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newVESCvalues:) name:@"newVESCvalues" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeGraphVariable:) name:@"changeGraphVariable" object:nil];
@@ -55,6 +59,36 @@
     [lblVescBattery setTextAlignment:NSTextAlignmentRight];
     [self.view addSubview:lblVescBattery];
     
+    btnStartControlMode = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 34)];
+    [btnStartControlMode setTitle:@"control mode" forState:UIControlStateNormal];
+    [btnStartControlMode setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnStartControlMode.titleLabel setFont:[UIFont fontWithName:@"Avenir" size:12]];
+    [btnStartControlMode addTarget:self action:@selector(startControlMode) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnStartControlMode];
+    
+    controlModeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, self.view.frame.size.height)];
+    [self.view addSubview:controlModeView];
+    
+    UIView *controlModeBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, self.view.frame.size.height)];
+    [controlModeBackground setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
+    [controlModeBackground setAlpha:0.75];
+    [controlModeView addSubview:controlModeBackground];
+    
+    sliderVescControl = [[UISlider alloc] initWithFrame:CGRectMake(20, 100, self.view.frame.size.height-50, 20)];
+    [sliderVescControl setTransform:CGAffineTransformMakeRotation(-M_PI_2)];
+    [sliderVescControl setCenter:CGPointMake(controlModeView.center.x, controlModeView.center.y+10)];
+    [controlModeView addSubview:sliderVescControl];
+    
+    UIButton *btnCloseControlMode = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, controlModeView.frame.size.width, 25)];
+    [btnCloseControlMode setTitle:@"stop control" forState:UIControlStateNormal];
+    [btnCloseControlMode setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnCloseControlMode.titleLabel setFont:[UIFont fontWithName:@"Avenir" size:12]];
+    [btnCloseControlMode setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
+    [btnCloseControlMode addTarget:self action:@selector(stopControlMode) forControlEvents:UIControlEventTouchUpInside];
+    [controlModeView addSubview:btnCloseControlMode];
+    
+    btnStartControlMode.alpha = 0;
+    controlModeView.frame = CGRectMake(-controlModeView.frame.size.width, controlModeView.frame.origin.y, controlModeView.frame.size.width, controlModeView.frame.size.height);
 
     isRecording = NO;
     
@@ -125,11 +159,14 @@
     
     [lblAppStatus setText:@"VESC Communication OK"];
     [lblVescBattery setText:[NSString stringWithFormat:@"%0.1f volts", newData.inpVoltage]];
+    btnStartControlMode.alpha = 1;
     
     [self updateGraph];
 }
 
 - (void) getValuesTimeOut {
+    btnStartControlMode.alpha = 0;
+    
     if (_UARTPeripheral == nil) {
         [lblAppStatus setText:@"VESC Communication timeout. Dropped connection."];
     } else {
@@ -388,6 +425,36 @@
         }
         NSLog(@"inStr: %@", inStr);
     }
+}
+
+- (void) startControlMode {
+    [UIView animateWithDuration:0.2 animations:^(void){
+        controlModeView.frame = CGRectMake(0, controlModeView.frame.origin.y, controlModeView.frame.size.width, controlModeView.frame.size.height);
+    }];
+    
+    if (controlModeTimer) {
+        [controlModeTimer invalidate];
+        controlModeTimer = nil;
+    }
+    controlModeTimer = [NSTimer scheduledTimerWithTimeInterval:SEND_SERIAL_DATA_INTERVAL target:self selector:@selector(sendControlCommandToVESC) userInfo:nil repeats:YES];
+}
+
+- (void) stopControlMode {
+    [UIView animateWithDuration:0.2 animations:^(void){
+        controlModeView.frame = CGRectMake(-controlModeView.frame.size.width, controlModeView.frame.origin.y, controlModeView.frame.size.width, controlModeView.frame.size.height);
+    }];
+    
+    if (controlModeTimer) {
+        [controlModeTimer invalidate];
+        controlModeTimer = nil;
+    }
+}
+
+- (void) sendControlCommandToVESC {
+    double sendValue = sliderVescControl.value*10;
+    NSLog(@"Tick: %lf", sendValue);
+    NSData *dataToSend = [self.aVescController dataForCommand:6 val:sendValue];
+    [_UARTPeripheral writeValue:dataToSend forCharacteristic:_txCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
 @end

@@ -34,6 +34,11 @@
     
     DataGraphView *aDataGraphView;
     int currentGraphVariable;
+    
+    UIButton *btnStartControlMode;
+    UIView *controlModeView;
+    UISlider *sliderVescControl;
+    NSTimer *controlModeTimer;
 }
 
 

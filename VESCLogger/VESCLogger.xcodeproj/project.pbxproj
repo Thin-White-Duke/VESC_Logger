@@ -553,6 +553,7 @@
 				26BE67D51C9AFA0500AD5E40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26BE67D61C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLoggerTests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +562,7 @@
 				26BE67D81C9AFA0500AD5E40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26BE67D91C9AFA0500AD5E40 /* Build configuration list for PBXNativeTarget "VESCLoggerUITests" */ = {
 			isa = XCConfigurationList;
@@ -569,6 +571,7 @@
 				26BE67DB1C9AFA0500AD5E40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
