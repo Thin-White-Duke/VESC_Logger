@@ -1,4 +1,18 @@
 # VESC_Logger
+
+@makevoid's fork
+
+changes:
+
+- add JSON loggging for making annotated videos
+- email JSON log (TODO)
+
+
+
+original readme:
+
+----
+
 iOS Code to enable VESC communication via Adafruit UART Friend.
 <br><br>
 This project can log real time data from the VESC into a mobile app.  It does not control the VESC, it only reports back on VESC data such as Amps, Battery Voltage, RPM, etc.

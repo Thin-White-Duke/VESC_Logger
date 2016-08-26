@@ -103,6 +103,11 @@
     // Test Stuff
     currentGraphVariable = 4; // 4 = RPM
     aDataGraphView.dataPointsName = [measureNames objectAtIndex:currentGraphVariable];
+    
+    
+    // debug code - remove from the final version
+    //
+    [self logData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,6 +155,7 @@
 }
 
 - (void) newVESCvalues:(NSNotification *)nObject {
+    NSLog(@"Got Values!");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(getValuesTimeOut) object:nil];
     
     NSData *myData = [nObject object];
@@ -162,8 +168,123 @@
     btnStartControlMode.alpha = 1;
     
     [self updateGraph];
+    [self logData];
 }
 
+#define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+
+- (void) appendStringToLogFile:(NSString *)logLine {
+    
+    logLine = [logLine stringByAppendingString:@"\n"];
+    
+    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentTXTPath    = [documentsDirectory stringByAppendingPathComponent:@"VESC_LOG.TXT"]; // I know capitalized name sucks but tell arduino ... this is to make it compatible with other data loggers / video overlayers made previously
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSLog(@"path: %@", documentTXTPath);
+    if(![fileManager fileExistsAtPath:documentTXTPath]) {
+        
+//        NSError *error;
+//        &error;
+//        NSLog error ...
+        [logLine writeToFile:documentTXTPath atomically:YES encoding:NSASCIIStringEncoding error:0];
+    } else {
+        NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:documentTXTPath];
+        [myHandle seekToEndOfFile];
+        [myHandle writeData:[logLine dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+}
+
+- (void) compressAndEmailLog {
+//  https://github.com/mattt/Godzippa
+    
+    //http://stackoverflow.com/questions/8083261/how-to-send-an-email-to-a-receipent-in-background-in-ios5
+}
+
+- (void) logData {
+    struct bldcMeasure thisData;
+    
+    NSLog(@"----------------------");
+    NSLog(@"%f",  thisData.temp_mos1);
+    NSLog(@"%f",  thisData.avgMotorCurrent);
+    NSLog(@"%f",  thisData.avgInputCurrent);
+    NSLog(@"%f",  thisData.dutyCycleNow);
+    NSLog(@"%ld", thisData.rpm);
+    NSLog(@"%f",  thisData.inpVoltage);
+    NSLog(@"%f",  thisData.wattHours);
+    NSLog(@"%f",  thisData.wattHoursCharged);
+    
+    NSLog(@"----------------------");
+    
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc]init];
+    [data setValue:[NSNumber numberWithFloat:thisData.temp_mos1]        forKey:@"mosfet_temp"];
+    [data setValue:[NSNumber numberWithFloat:thisData.avgMotorCurrent]  forKey:@"avgMotorCurrent"];
+    [data setValue:[NSNumber numberWithFloat:thisData.avgInputCurrent]  forKey:@"avgInputCurrent"];
+    [data setValue:[NSNumber numberWithFloat:thisData.dutyCycleNow]     forKey:@"dutyCycleNow"];
+    [data setValue:[NSNumber numberWithLong: thisData.rpm]              forKey:@"rpm"];
+    [data setValue:[NSNumber numberWithFloat:thisData.inpVoltage]       forKey:@"inpVoltage"];
+    [data setValue:[NSNumber numberWithFloat:thisData.wattHours]        forKey:@"wattHours"];
+    [data setValue:[NSNumber numberWithFloat:thisData.wattHoursCharged] forKey:@"wattHoursCharged"];
+//    [data setValue:[NSNumber numberWithFloat:thisData.ampHours]         forKey:@"ampHours"];
+//    [data setValue:[NSNumber numberWithFloat:thisData.ampHoursCharged]  forKey:@"ampHoursCharged"];
+    
+
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject: data
+                                                       options: 0
+//                                                       options: NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error: &error];
+    
+    if (! jsonData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"Log: %@", jsonString);
+        
+        [self appendStringToLogFile: jsonString];
+    }
+    
+    
+    // testing
+    
+    [self compressAndEmailLog];
+    
+    
+    
+    
+    // -----
+    
+    
+    // notes:
+    
+    
+    // all the values in bldcMeasure:
+    //
+    //    float temp_mos1;
+    //    float temp_mos2;
+    //    float temp_mos3;
+    //    float temp_mos4;
+    //    float temp_mos5;
+    //    float temp_mos6;
+    //    float temp_pcb;
+    //    float avgMotorCurrent;
+    //    float avgInputCurrent;
+    //    float dutyCycleNow;
+    //    long rpm;
+    //    float inpVoltage;
+    //    float ampHours;
+    //    float ampHoursCharged;
+    //    float wattHours;
+    //    float wattHoursCharged;
+    //    long tachometer;
+    //    long tachometerAbs;
+    //    mc_fault_code fault_code;
+
+}
+    
 - (void) getValuesTimeOut {
     btnStartControlMode.alpha = 0;
     
@@ -355,6 +476,7 @@
             if ([aChar.UUID isEqual:[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID]]) {
                 NSLog(@"Found TX service");
                 _txCharacteristic = aChar;
+                NSLog(@"Tx char %@", aChar);
                 
                 if (_rxCharacteristic != nil) [self UART_Ready];
                 
@@ -424,6 +546,17 @@
             inStr = [inStr stringByAppendingFormat:@"0x%02x, ", bytes[i]];
         }
         NSLog(@"inStr: %@", inStr);
+    
+        
+        NSLog(@"antani: %@", characteristic.UUID);
+        //NSLog(@"antani: %@", characteristic.value);
+        
+        NSString *inStr2 = @"";
+        for (int i = 0; i < characteristic.value.length; i++) {
+            inStr2 = [inStr2 stringByAppendingFormat:@"%c", bytes[i]];
+        }
+        NSLog(@"antani val: %@", inStr2);
+        
     }
 }
 

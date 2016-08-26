@@ -17,11 +17,20 @@
 // Adafruit UART friend
 // https://learn.adafruit.com/introducing-the-adafruit-bluefruit-le-uart-friend/uart-service
 
-#define UART_SERVICE_UUID @"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+// author
+//
+//6E400001-B5A3-F393-E0A9-E50E24DCCA9E
+
+// mine
+//
+//00001530-1212-EFDE-1523-785FEABCD123
+//6E400001-B5A3-F393-E0A9-E50E24DCCA9E
+
+#define UART_SERVICE_UUID      @"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 #define RX_CHARACTERISTIC_UUID @"6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
 #define TX_CHARACTERISTIC_UUID @"6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 #define DEVICE_INFO_UUID @"180A"
-#define HARDWARE_REVISION_UUID @"2A27"
+#define HARDWARE_REVISION_UUID @"2A27" // QFACA10 // orig: 2A27
 
 @interface ViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate> {
     UILabel *lblVESCStatus;
