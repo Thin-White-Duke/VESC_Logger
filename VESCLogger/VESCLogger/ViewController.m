@@ -103,11 +103,6 @@
     // Test Stuff
     currentGraphVariable = 4; // 4 = RPM
     aDataGraphView.dataPointsName = [measureNames objectAtIndex:currentGraphVariable];
-    
-    
-    // debug code - remove from the final version
-    //
-    [self logData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -168,7 +163,6 @@
     btnStartControlMode.alpha = 1;
     
     [self updateGraph];
-    [self logData];
 }
 
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
@@ -203,8 +197,15 @@
     //http://stackoverflow.com/questions/8083261/how-to-send-an-email-to-a-receipent-in-background-in-ios5
 }
 
-- (void) logData {
+- (void) logData:(NSData *)theData {
     struct bldcMeasure thisData;
+    
+    [theData getBytes:&thisData length:sizeof(thisData)];
+    
+    NSLog(@">>>>>");
+    NSLog(@"%@",  @(thisData.rpm));
+    NSLog(@">>>>>");
+    
     
     NSLog(@"----------------------");
     NSLog(@"%f",  thisData.temp_mos1);
@@ -215,7 +216,6 @@
     NSLog(@"%f",  thisData.inpVoltage);
     NSLog(@"%f",  thisData.wattHours);
     NSLog(@"%f",  thisData.wattHoursCharged);
-    
     NSLog(@"----------------------");
     
     
@@ -528,6 +528,8 @@
             
             // Add this VESC data, with Date as an array
             [_dataArray addObject:@[[NSDate date], myData]];
+            
+            [self logData: myData];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"newVESCvalues" object:myData];
             
