@@ -48,6 +48,8 @@
     UIView *controlModeView;
     UISlider *sliderVescControl;
     NSTimer *controlModeTimer;
+    
+    NSDate *timerStart;
 }
 
 

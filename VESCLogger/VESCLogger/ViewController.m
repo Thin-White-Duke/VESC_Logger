@@ -103,6 +103,9 @@
     // Test Stuff
     currentGraphVariable = 4; // 4 = RPM
     aDataGraphView.dataPointsName = [measureNames objectAtIndex:currentGraphVariable];
+    
+    // Timer for logging
+    timerStart = [NSDate date];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -202,24 +205,27 @@
     
     [theData getBytes:&thisData length:sizeof(thisData)];
     
-    NSLog(@">>>>>");
-    NSLog(@"%@",  @(thisData.rpm));
-    NSLog(@">>>>>");
+//    NSLog(@">>>>>");
+//    NSLog(@"%@",  @(thisData.rpm));
     
+    
+    float logTime = fabs([timerStart timeIntervalSinceNow]);
     
     NSLog(@"----------------------");
-    NSLog(@"%f",  thisData.temp_mos1);
-    NSLog(@"%f",  thisData.avgMotorCurrent);
-    NSLog(@"%f",  thisData.avgInputCurrent);
-    NSLog(@"%f",  thisData.dutyCycleNow);
-    NSLog(@"%ld", thisData.rpm);
-    NSLog(@"%f",  thisData.inpVoltage);
-    NSLog(@"%f",  thisData.wattHours);
-    NSLog(@"%f",  thisData.wattHoursCharged);
+    NSLog(@"t: %f",                 logTime);
+    NSLog(@"temp_mos1: %f",         thisData.temp_mos1);
+    NSLog(@"avgMotorCurrent: %f",   thisData.avgMotorCurrent);
+    NSLog(@"avgInputCurrent: %f",   thisData.avgInputCurrent);
+    NSLog(@"dutyCycleNow: %f",      thisData.dutyCycleNow);
+    NSLog(@"rpm: %ld",              thisData.rpm);
+    NSLog(@"inpVoltage: %f",        thisData.inpVoltage);
+    NSLog(@"wattHours: %f",         thisData.wattHours);
+    NSLog(@"wattHoursCharged: %f",  thisData.wattHoursCharged);
     NSLog(@"----------------------");
     
     
     NSMutableDictionary *data = [[NSMutableDictionary alloc]init];
+    [data setValue:[NSNumber numberWithFloat:logTime] forKey:@"t"];
     [data setValue:[NSNumber numberWithFloat:thisData.temp_mos1]        forKey:@"mosfet_temp"];
     [data setValue:[NSNumber numberWithFloat:thisData.avgMotorCurrent]  forKey:@"avgMotorCurrent"];
     [data setValue:[NSNumber numberWithFloat:thisData.avgInputCurrent]  forKey:@"avgInputCurrent"];
